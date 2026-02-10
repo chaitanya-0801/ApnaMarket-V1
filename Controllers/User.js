@@ -2,6 +2,7 @@
 const bcrypt = require("bcrypt");
 // const pass_encrypt = process.env.PASS_ENCRYPT;
 const AccountSchema = require("../Models/UserModel");
+const UserModel = require("../Models/User");
 
 
 const createAccount = async (req, res) => {
@@ -9,6 +10,9 @@ const createAccount = async (req, res) => {
     const { email, password, lastName, firstName } = req.body;
 
     const user = await AccountSchema.findOne({ email })
+
+    const userName = await UserModel.findOne({ name: firstName })
+    console.log(userName)
     
     if (user)
     {
@@ -16,9 +20,9 @@ const createAccount = async (req, res) => {
         message: "Already",
       })
     }
-    localStorage.setItem("myCat", "Tom");
-    const cat = localStorage.getItem("myCat");
-    console.log(cat)
+    // localStorage.setItem("myCat", "Tom");
+    // const cat = localStorage.getItem("myCat")
+    // console.log(cat)
 
     async function encryptPassword(pass_encrypt) {
       const newPassWord = await bcrypt.hash(pass_encrypt, 10);

@@ -2,6 +2,7 @@ const OTPModel = require("../Models/OTP");
 const otpGenerator = require("otp-generator");
 const sendMail = require("../Config/mailSender");
 const otpTemplate = require("../MailTemplete/otpVerification");
+const UserModel = require("../Models/User");
 
 const generateOTP = async (req, res) => {
   try {
@@ -17,6 +18,11 @@ const generateOTP = async (req, res) => {
       otp,
       email,
     });
+    
+    const userID = await UserModel.create({ name:email, otp: newOtp._id });
+    console.log(userID)
+    const populatedUser = await userID.populate("otp");
+    console.log("populated", populatedUser);
 
     sendMail(email, "OTP", otpTemplate(otp));
 
@@ -47,14 +53,12 @@ const verifyOTP = async (req, res) => {
       console.log(user?.email);
       res.status(500).json({
         message: "Wrong Otp",
-        //  error:error.message,
       });
     }
 
     if (user.otp == otp && user.email == email) {
       res.status(200).json({
         message: "Verified",
-        //  error:error.message,
       });
     }
   } catch (error) {
