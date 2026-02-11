@@ -7,6 +7,7 @@ app.use(express.json());
 const PORT = process.env.PORT || 3000;
 connectDB();
 
+
 app.get("/", (req, res) => {
   res.send("Hello");
 });

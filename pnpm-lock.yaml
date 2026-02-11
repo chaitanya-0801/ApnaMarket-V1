@@ -35,6 +35,9 @@ importers:
       otp-generator:
         specifier: ^4.0.1
         version: 4.0.1
+      random-string-generator:
+        specifier: ^1.0.7
+        version: 1.0.7
 
 packages:
 
@@ -411,6 +414,9 @@ packages:
   qs@6.14.1:
     resolution: {integrity: sha512-4EK3+xJl8Ts67nLYNwqw/dsFVnCf+qR7RgXSK9jEEm9unao3njwMDdmsdvoKBKHzxd7tCYz5e5M+SnMjdtXGQQ==}
     engines: {node: '>=0.6'}
+
+  random-string-generator@1.0.7:
+    resolution: {integrity: sha512-Nypoclbe9hWE2TUy8z4TtncLdBYHGOnaywkJ3gWp2zNpCbhuDQ1oc0fYdzet5a7hOoisGYvcDN8lzrc+O8MWaw==}
 
   range-parser@1.2.1:
     resolution: {integrity: sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==}
@@ -886,6 +892,8 @@ snapshots:
   qs@6.14.1:
     dependencies:
       side-channel: 1.1.0
+
+  random-string-generator@1.0.7: {}
 
   range-parser@1.2.1: {}
 

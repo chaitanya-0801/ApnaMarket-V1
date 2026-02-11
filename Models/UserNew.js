@@ -17,6 +17,11 @@ const UserFull = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "profile",
         required:true,
+    },
+    isEmailVerified: {
+        type: String,
+        required: true,
+        enum:['Yes','No'],
     }
 })
 

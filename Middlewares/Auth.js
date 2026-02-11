@@ -13,6 +13,12 @@ const Auth = async (req, res,next) => {
                 message:"Account Mismatch From MiddelWare",
             })
         }
+        if (!user.isEmailVerified)
+        {
+              return res.status(500).json({
+                message:"Email is not verified",
+            })
+        }
         next()
         
     } catch (error) {

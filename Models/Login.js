@@ -26,6 +26,10 @@ const NewAccountSchema = new mongoose.Schema({
     additional: {
         type: mongoose.Schema.Types.ObjectId,
         required:true
+    },
+    isEmailVerified: {
+        type: Boolean,
+        default: false,
     }
 })
 

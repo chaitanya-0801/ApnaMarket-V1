@@ -55,7 +55,7 @@ const SignUp = async (req, res) => {
       password: hashedPass,
       additional: newProfile._id,
     });
-
+    newUser.password=undefined
     return res.status(200).json({
       message: "User Created Successfully",
       newUser,
@@ -70,8 +70,15 @@ const SignUp = async (req, res) => {
 const Login = async (req, res) => {
     try {
 
-        const { email, accountType, password } = req.body;
-        const user = await NewAccountModel.findOne({ email });
+        const { email, password } = req.body;
+      const user = await NewAccountModel.findOne({ email });
+      
+      if (user.isEmailVerified != 'Yes')
+      {
+        return res.status(500).json({
+          message:"Please Verify Email First",
+        })
+      }
 
         const checkPassword = bcrypt.compare(password, user.password);
 
